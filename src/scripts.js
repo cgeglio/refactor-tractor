@@ -3,28 +3,52 @@ import './css/styles.scss';
 import $ from 'jquery';
 
 
-let userData = fetch('https://fe-apps.herokuapp.com/api/v1/fitlit/1908/users/userData').then(function(response) {
-  return response.json()
-});
+import UserRepository from './UserRepository';
+import User from './User';
+import Activity from './Activity';
+import Hydration from './Hydration';
+import Sleep from './Sleep';
+
+let userRepository = new UserRepository();
+let userData = [];
+
+function getUsers() {
+  return fetch('https://fe-apps.herokuapp.com/api/v1/fitlit/1908/users/userData')
+    .then(data => data.json())
+    .then(data => data.userData)
+    .then(userInfo => {
+      let userKeys = Object.keys(userInfo)
+      userKeys.forEach(key => userData.push(
+        userInfo[key]
+      ))
+    })
+    .catch(error => console.log('failure'))
+}
+
 let sleepData = fetch('https://fe-apps.herokuapp.com/api/v1/fitlit/1908/sleep/sleepData').then(function(response) {
   return response.json()
 });
+
 let hydrationData = fetch('https://fe-apps.herokuapp.com/api/v1/fitlit/1908/hydration/hydrationData').then(function(response) {
   return response.json()
 });
+
 let activityData = fetch('https://fe-apps.herokuapp.com/api/v1/fitlit/1908/activity/activityData').then(function(response) {
   return response.json()
 })
 
 function getData() {
-  return Promise.all([ userData, sleepData, hydrationData, activityData ])
+  return Promise.all([ getUsers(), sleepData, hydrationData, activityData ])
 }
 
 getData()
-  .then(instantiateUser())
+  .then(() => instantiateUsers())
 
-function instantiateUser () {
-  console.log('hi')
+function instantiateUsers() {
+  userData.forEach(user => {
+    user = new User(user);
+    userRepository.users.push(user)
+  })
 }
 
 // import userData from './data/users';
@@ -32,20 +56,6 @@ function instantiateUser () {
 // import sleepData from './data/sleep';
 // import hydrationData from './data/hydration';
 //
-// import UserRepository from './UserRepository';
-// import User from './User';
-// import Activity from './Activity';
-// import Hydration from './Hydration';
-// import Sleep from './Sleep';
-//
-//
-//
-// let userRepository = new UserRepository();
-//
-// userData.forEach(user => {
-//   user = new User(user);
-//   userRepository.users.push(user)
-// });
 //
 // activityData.forEach(activity => {
 //   activity = new Activity(activity, userRepository);
