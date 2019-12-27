@@ -1,3 +1,8 @@
+/* This is an example of using Sass, otherwise plain CSS works too*/
+$primary-background: #1F1F1F;
+$primary-text-color: #FFFFFF;
+$secondary-font: 'Work Sans', sans-serif;
+
 *,
 *:after,
 *:before {
@@ -7,7 +12,7 @@ padding: 0;
 }
 
 body {
-  background-color: #1F1F1F;
+  background-color: $primary-background;
   font-family: 'Oswald', sans-serif;
 }
 
@@ -36,8 +41,8 @@ button:active {
 }
 
 #user-info-dropdown {
-  background-color: #1F1F1F;
-  color: white;
+  background-color: $primary-background;
+  color: $primary-text-color;
   margin-left: 60%;
   margin-top: -1.2%;
   position: relative;
@@ -56,7 +61,7 @@ button:active {
 
 /* TEXT ELEMENTS */
 h1 {
-  color: #fff;
+  color: $primary-text-color;
   display: inline;
   font-size: 5.4vw;
   letter-spacing: .2em;
@@ -69,7 +74,7 @@ h2 {
 
 h3 {
   display: inline;
-  font-family: 'Work Sans', sans-serif;
+  font-family: $secondary-font;
   font-size: 3vw;
   font-weight: 700;
   letter-spacing: .2em;
@@ -86,7 +91,7 @@ h5 {
 }
 
 p {
-  font-family: 'Work Sans', sans-serif;
+  font-family: $secondary-font;
   font-size: 1.2vw;
   font-weight: 600;
   letter-spacing: .2vw;
