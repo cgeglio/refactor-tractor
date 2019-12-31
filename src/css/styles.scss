@@ -1,4 +1,3 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
 @import 'variables';
 
 *,
@@ -11,7 +10,7 @@ padding: 0;
 
 body {
   background-color: $primary-background;
-  font-family: 'Oswald', sans-serif;
+  font-family: $primary-font;
 }
 
 /* HEADER */
