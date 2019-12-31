@@ -20,9 +20,14 @@ header {
   height: 9vw;
 }
 
-button:active {
-  border: none;
-  outline: none;
+button {
+  &:active {
+    border: none;
+    outline: none;
+  }
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 #profile-button {
