@@ -165,8 +165,7 @@ main {
 }
 
 .hydration-data-line {
-  display: flex;
-  justify-content: center;
+  @extend .card-data-line;
   margin-bottom: .2vw;
 }
 
