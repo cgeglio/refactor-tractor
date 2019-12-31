@@ -126,25 +126,25 @@ main {
 }
 
 #steps-card-container {
-  background-color: #F5634B;
+  background-color: hsla(8, 89%, 63%, 1);
   grid-area: steps;
   margin: .5vw;
 }
 
 #hydration-card-container {
-  background-color: #54C6BE;
+  background-color: hsla(176, 50%, 55%, 1);
   grid-area: hydration;
   margin: .5vw;
 }
 
 #stairs-card-container {
-  background-color: #8975B2;
+  background-color: hsla(260, 28%, 58%, 1);
   grid-area: stairs;
   margin: .5vw;
 }
 
 #sleep-card-container {
-  background-color: #FBD089;
+  background-color: hsla(37, 93%, 76%, 1);
   grid-area: sleep;
   margin: .5vw;
 }
@@ -284,13 +284,13 @@ main {
 }
 
 .green-text {
-  color: green;
+  color: hsla(112, 100%, 36%, 1);
 }
 
 .red-text {
-  color: red;
+  color: hsla(360, 100%, 36%, 1);
 }
 
 .yellow-text {
-  color: #F8BA00;
+  color: hsla(45, 100%, 49%, 1);
 }
