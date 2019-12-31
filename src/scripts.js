@@ -1,4 +1,5 @@
 import './css/variables.scss';
+import './css/mixins.scss';
 import './css/styles.scss';
 import $ from 'jquery';
 
