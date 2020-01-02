@@ -122,68 +122,69 @@ function instantiateUsers() {
 }
 
 function flipCard(cardToHide, cardToShow) {
-  cardToHide.classList.add('hide');
-  cardToShow.classList.remove('hide');
+  console.log(cardToHide, cardToShow)
+  cardToHide.addClass('hide');
+  cardToShow.removeClass('hide');
 }
 
 function showDropdown() {
-  userInfoDropdown.classList.toggle('hide');
+  userInfoDropdown.toggleClass('hide');
 }
 
 function showInfo() {
-  if (event.target.classList.contains('steps-info-button')) {
+  if ($(event.target).hasClass('steps-info-button')) {
     flipCard(stepsMainCard, stepsInfoCard);
   }
-  if (event.target.classList.contains('steps-friends-button')) {
+  if ($(event.target).hasClass('steps-friends-button')) {
     flipCard(stepsMainCard, stepsFriendsCard);
   }
-  if (event.target.classList.contains('steps-trending-button')) {
+  if ($(event.target).hasClass('steps-trending-button')) {
     flipCard(stepsMainCard, stepsTrendingCard);
   }
-  if (event.target.classList.contains('steps-calendar-button')) {
+  if ($(event.target).hasClass('steps-calendar-button')) {
     flipCard(stepsMainCard, stepsCalendarCard);
   }
-  if (event.target.classList.contains('hydration-info-button')) {
+  if ($(event.target).hasClass('hydration-info-button')) {
     flipCard(hydrationMainCard, hydrationInfoCard);
   }
-  if (event.target.classList.contains('hydration-friends-button')) {
+  if ($(event.target).hasClass('hydration-friends-button')) {
     flipCard(hydrationMainCard, hydrationFriendsCard);
   }
-  if (event.target.classList.contains('hydration-calendar-button')) {
+  if ($(event.target).hasClass('hydration-calendar-button')) {
     flipCard(hydrationMainCard, hydrationCalendarCard);
   }
-  if (event.target.classList.contains('stairs-info-button')) {
+  if ($(event.target).hasClass('stairs-info-button')) {
     flipCard(stairsMainCard, stairsInfoCard);
   }
-  if (event.target.classList.contains('stairs-friends-button')) {
+  if ($(event.target).hasClass('stairs-friends-button')) {
     flipCard(stairsMainCard, stairsFriendsCard);
   }
-  if (event.target.classList.contains('stairs-trending-button')) {
+  if ($(event.target).hasClass('stairs-trending-button')) {
     flipCard(stairsMainCard, stairsTrendingCard);
   }
-  if (event.target.classList.contains('stairs-calendar-button')) {
+  if ($(event.target).hasClass('stairs-calendar-button')) {
     flipCard(stairsMainCard, stairsCalendarCard);
   }
-  if (event.target.classList.contains('sleep-info-button')) {
+  if ($(event.target).hasClass('sleep-info-button')) {
     flipCard(sleepMainCard, sleepInfoCard);
   }
-  if (event.target.classList.contains('sleep-friends-button')) {
+  if ($(event.target).hasClass('sleep-friends-button')) {
     flipCard(sleepMainCard, sleepFriendsCard);
   }
-  if (event.target.classList.contains('sleep-calendar-button')) {
+  if ($(event.target).hasClass('sleep-calendar-button')) {
     flipCard(sleepMainCard, sleepCalendarCard);
   }
-  if (event.target.classList.contains('steps-go-back-button')) {
-    flipCard(event.target.parentNode, stepsMainCard);
+  if ($(event.target).hasClass('steps-go-back-button')) {
+    flipCard($(event.target).parent(), stepsMainCard);
   }
-  if (event.target.classList.contains('hydration-go-back-button')) {
-    flipCard(event.target.parentNode, hydrationMainCard);
+  if ($(event.target).hasClass('hydration-go-back-button')) {
+    flipCard($(event.target).parent(), hydrationMainCard);
   }
-  if (event.target.classList.contains('stairs-go-back-button')) {
-    flipCard(event.target.parentNode, stairsMainCard);
+  if ($(event.target).hasClass('stairs-go-back-button')) {
+    flipCard($(event.target).parent(), stairsMainCard);
   }
-  if (event.target.classList.contains('sleep-go-back-button')) {
-    flipCard(event.target.parentNode, sleepMainCard);
+  if ($(event.target).hasClass('sleep-go-back-button')) {
+    flipCard($(event.target).parent(), sleepMainCard);
   }
 }
 
@@ -234,9 +235,9 @@ function fillInDomData() {
 
   $('#sleep-info-hours-average-alltime').text(user.hoursSleptAverage);
 
-  // $('#steps-info-miles-walked-today').text(user.activityRecord.find(activity => {
-  //   return (activity.date === todayDate && activity.userId === user.id)
-  // }).calculateMiles(userRepository));
+  $('#steps-info-miles-walked-today').text(user.activityRecord.find(activity => {
+    return (activity.date === todayDate && activity.userId === user.id)
+  }).calculateMiles(userRepository));
 
   $('#sleep-info-quality-average-alltime').text(user.sleepQualityAverage);
 
@@ -298,13 +299,13 @@ function fillInDomData() {
 let friendsStepsParagraphs = $('.friends-steps');
 friendsStepsParagraphs.forEach(paragraph => {
   if (friendsStepsParagraphs[0] === paragraph) {
-    paragraph.classList.add('green-text');
+    paragraph.addClass('green-text');
   }
   if (friendsStepsParagraphs[friendsStepsParagraphs.length - 1] === paragraph) {
-    paragraph.classList.add('red-text');
+    paragraph.addClass('red-text');
   }
   if (paragraph.innerText.includes('YOU')) {
-    paragraph.classList.add('yellow-text');
+    paragraph.addClass('yellow-text');
   }
 });
 
