@@ -128,7 +128,7 @@ function flipCard(cardToHide, cardToShow) {
 }
 
 function showDropdown() {
-  userInfoDropdown.toggleClass('hide');
+  $(`#user-info-dropdown`).toggleClass('hide');
 }
 
 function showInfo() {
