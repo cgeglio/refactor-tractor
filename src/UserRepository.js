@@ -72,9 +72,11 @@ class UserRepository {
     let todaysDrinkers = this.users.filter(user => {
       return user.addDailyOunces(date) > 0;
     });
+    console.log(todaysDrinkers)
     let sumDrankOnDate = todaysDrinkers.reduce((sum, drinker) => {
       return sum += drinker.addDailyOunces(date);
     }, 0)
+    console.log(sumDrankOnDate)
     return Math.floor(sumDrankOnDate / todaysDrinkers.length);
   }
   findBestSleepers(date) {

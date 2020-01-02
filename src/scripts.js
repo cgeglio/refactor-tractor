@@ -45,20 +45,8 @@ let stairsTrendingCard = $('#stairs-trending-card');
 let user;
 let userData = [];
 let userRepository;
+let sortedHydrationDataByDate;
 
-//
-// let sortedHydrationDataByDate =
-// console.log(user)
-// console.log(userRepository.users[0])
-// user.ouncesRecord.sort((a, b) => {
-//   if (Object.keys(a)[0] > Object.keys(b)[0]) {
-//     return -1;
-//   }
-//   if (Object.keys(a)[0] < Object.keys(b)[0]) {
-//     return 1;
-//   }
-//   return 0;
-// });
 
 $('main').click(showInfo);
 $('#profile-button').click(showDropdown);
@@ -110,19 +98,33 @@ function getData() {
 getData()
   .then(() => instantiateUsers())
 
+
 function instantiateUsers() {
   userRepository= new UserRepository();
   userData.forEach(u => {
     let newUser = new User(u);
-    userRepository.users.push(newUser)
+    userRepository.users.push(newUser);
   })
   user = userRepository.users[0];
   user.findFriendsNames(userRepository.users);
+  sortHydrationData();
   fillInDomData();
 }
 
+function sortHydrationData() {
+  sortedHydrationDataByDate =
+  user.ouncesRecord.sort((a, b) => {
+    if (Object.keys(a)[0] > Object.keys(b)[0]) {
+      return -1;
+    }
+    if (Object.keys(a)[0] < Object.keys(b)[0]) {
+      return 1;
+    }
+    return 0;
+  })
+};
+
 function flipCard(cardToHide, cardToShow) {
-  console.log(cardToHide, cardToShow)
   cardToHide.addClass('hide');
   cardToShow.removeClass('hide');
 }
@@ -198,9 +200,9 @@ function updateTrendingStepDays() {
   $('.trending-steps-phrase-container').html(`<p class='trend-line'>${user.trendingStepDays[0]}</p>`);
 }
 
-// for (var i = 0; i < dailyOz.length; i++) {
-//   dailyOz[i].innerText = user.addDailyOunces(Object.keys(sortedHydrationDataByDate[i])[0])
-// }
+for (var i = 0; i < dailyOz.length; i++) {
+  dailyOz[i].innerText = user.addDailyOunces(Object.keys(sortedHydrationDataByDate[i])[0])
+}
 
 function fillInDomData() {
   $('#dropdown-goal').text(`DAILY STEP GOAL | ${user.dailyStepGoal}`);
@@ -215,6 +217,7 @@ function fillInDomData() {
     return hydration.userID === user.id && hydration.date === todayDate;
   }).numOunces);
 
+  console.log(userRepository.calculateAverageDailyWater(todayDate))
   $('#hydration-friend-ounces-today').text(userRepository.calculateAverageDailyWater(todayDate));
 
   $('#hydration-info-glasses-today').text(hydrationData.find(hydration => {
